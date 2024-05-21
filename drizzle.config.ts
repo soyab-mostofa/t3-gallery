@@ -1,12 +1,10 @@
-import { type Config } from "drizzle-kit";
-
+import { defineConfig } from "drizzle-kit";
 import { env } from "~/env";
-
-export default {
-  schema: "./src/server/db/schema.ts",
-  dialect: "postgresql",
+export default defineConfig({
+  schema: "./src/schema.ts",
+  out: "./drizzle",
+  driver: "pg",
   dbCredentials: {
-    url: env.POSTGRES_URL,
+    connectionString: env.POSTGRES_URL,
   },
-  tablesFilter: ["t3-gallery_*"],
-} satisfies Config;
+});
